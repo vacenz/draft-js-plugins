@@ -1,6 +1,8 @@
 import decorateComponentWithProps from 'decorate-component-with-props';
 import Link from './Link';
+import LinkAdd from './LinkAdd';
 import linkStrategy from './linkStrategy';
+import linkifyStrategy from './linkifyStrategy';
 import styles from './styles.css';
 
 const defaultTheme = {
@@ -24,10 +26,15 @@ const linkPlugin = (config = {}) => {
   return {
     decorators: [
       {
+        strategy: linkifyStrategy,
+        component: decorateComponentWithProps(Link, { theme, target, component }),
+      },
+      {
         strategy: linkStrategy,
         component: decorateComponentWithProps(Link, { theme, target, component }),
       },
     ],
+    LinkAdd,
   };
 };
 
