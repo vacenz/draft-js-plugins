@@ -14,12 +14,11 @@ import toolbarStyles from './toolbarStyles.css';
 const createInlineToolbarPlugin = (config = {}) => {
   const defaultTheme = { buttonStyles, toolbarStyles };
 
-  const store = createStore({
-    isVisible: false,
-  });
+  const defaultaddLink = undefined;
 
   const {
     theme = defaultTheme,
+    addLink = defaultaddLink,
     structure = [
       BoldButton,
       ItalicButton,
@@ -27,6 +26,11 @@ const createInlineToolbarPlugin = (config = {}) => {
       CodeButton,
     ]
   } = config;
+
+  const store = createStore({
+    isVisible: false,
+    addLink
+  });
 
   const toolbarProps = {
     store,
